@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wedding Card</title>
   <style>
+    /* Reset & background */
     body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+      margin: 0; padding: 0; height: 100%;
       background: black;
     }
 
+    /* Container for flip effect */
     .flip-card {
       width: 100vw;
       height: 100vh;
@@ -20,18 +20,22 @@
       position: relative;
     }
 
+    /* Inner card that flips */
     .flip-card-inner {
       position: relative;
       width: 100%;
       height: 100%;
       transition: transform 0.8s;
       transform-style: preserve-3d;
+      transform: rotateY(0deg); /* Front side visible by default */
     }
 
+    /* When flipped */
     .flipped {
       transform: rotateY(180deg);
     }
 
+    /* Front and back sides */
     .flip-card-front,
     .flip-card-back {
       position: absolute;
@@ -40,10 +44,12 @@
       backface-visibility: hidden;
     }
 
+    /* Back side rotated */
     .flip-card-back {
       transform: rotateY(180deg);
     }
 
+    /* Images styling */
     .flip-card-front img,
     .flip-card-back img {
       max-width: 100%;
