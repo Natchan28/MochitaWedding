@@ -5,37 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wedding Card</title>
   <style>
-    /* Reset & background */
     body, html {
       margin: 0; padding: 0; height: 100%;
       background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      user-select: none;
     }
 
-    /* Container for flip effect */
     .flip-card {
       width: 100vw;
-      height: 100vh;
+      height: 90vh;
       perspective: 1000px;
       overflow: hidden;
       position: relative;
+      cursor: pointer;
     }
 
-    /* Inner card that flips */
     .flip-card-inner {
       position: relative;
       width: 100%;
       height: 100%;
       transition: transform 0.8s;
       transform-style: preserve-3d;
-      transform: rotateY(0deg); /* Front side visible by default */
+      transform: rotateY(0deg);
     }
 
-    /* When flipped */
     .flipped {
       transform: rotateY(180deg);
     }
 
-    /* Front and back sides */
     .flip-card-front,
     .flip-card-back {
       position: absolute;
@@ -44,12 +47,10 @@
       backface-visibility: hidden;
     }
 
-    /* Back side rotated */
     .flip-card-back {
       transform: rotateY(180deg);
     }
 
-    /* Images styling */
     .flip-card-front img,
     .flip-card-back img {
       max-width: 100%;
@@ -62,6 +63,20 @@
       top: 0; bottom: 0; left: 0; right: 0;
       object-fit: contain;
       background-color: black;
+    }
+
+    /* The tap hint text */
+    .tap-hint {
+      margin-top: 8px;
+      font-size: 1.1rem;
+      opacity: 0.7;
+      animation: pulse 2.5s infinite;
+      user-select: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
     }
   </style>
 </head>
@@ -76,6 +91,8 @@
       </div>
     </div>
   </div>
+
+  <div class="tap-hint">Tap the card to flip</div>
 
   <script>
     function flipCard() {
