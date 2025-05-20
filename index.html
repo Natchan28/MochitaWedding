@@ -5,61 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wedding Card</title>
   <style>
-    body {
+    body, html {
       margin: 0;
       padding: 0;
-      background: #000;
-      overflow: hidden;
+      height: 100%;
+      background: black;
     }
 
     .flip-card {
       width: 100vw;
       height: 100vh;
       perspective: 1000px;
+      overflow: hidden;
+      position: relative;
     }
 
     .flip-card-inner {
       position: relative;
       width: 100%;
       height: 100%;
-      transform-style: preserve-3d;
       transition: transform 0.8s;
+      transform-style: preserve-3d;
     }
 
-    .flip-card.flipped .flip-card-inner {
+    .flipped {
       transform: rotateY(180deg);
     }
 
-    .flip-card-front, .flip-card-back {
+    .flip-card-front,
+    .flip-card-back {
       position: absolute;
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
     }
 
-    .flip-card-front img,
-    .flip-card-back img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
     .flip-card-back {
       transform: rotateY(180deg);
+    }
+
+    .flip-card-front img,
+    .flip-card-back img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: block;
+      margin: auto;
+      position: absolute;
+      top: 0; bottom: 0; left: 0; right: 0;
+      object-fit: contain;
+      background-color: black;
     }
   </style>
 </head>
 <body>
-  <div class="flip-card" onclick="this.classList.toggle('flipped')">
-    <div class="flip-card-inner">
+  <div class="flip-card" onclick="flipCard()">
+    <div class="flip-card-inner" id="cardInner">
       <div class="flip-card-front">
-        <img src="front.png" alt="Front of the card" />
+        <img src="front.png" alt="Front of the wedding card" />
       </div>
       <div class="flip-card-back">
-        <img src="back.png" alt="Back of the card" />
+        <img src="back.png" alt="Back of the wedding card" />
       </div>
     </div>
   </div>
+
+  <script>
+    function flipCard() {
+      document.getElementById("cardInner").classList.toggle("flipped");
+    }
+  </script>
 </body>
 </html>
